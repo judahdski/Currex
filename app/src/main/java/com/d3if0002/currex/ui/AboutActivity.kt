@@ -7,18 +7,23 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.d3if0002.currex.R
+import com.d3if0002.currex.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var binding: ActivityAboutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setUI()
     }
 
     private fun setUI() {
-        val viewBtn = findViewById<Button>(R.id.view_button)
-        val supportBtn = findViewById<Button>(R.id.support_button)
+        val viewBtn = binding.viewButton
+        val supportBtn = binding.supportButton
 
         viewBtn.setOnClickListener(this)
         supportBtn.setOnClickListener(this)
