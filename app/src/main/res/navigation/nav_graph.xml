@@ -11,13 +11,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_forexFragment"
+            android:id="@+id/navigate_to_forex_fragment"
             app:destination="@id/forexFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_cryptoFragment"
+            android:id="@+id/navigate_to_crypto_fragment"
             app:destination="@id/cryptoFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_convertCurrencyFragment"
+            android:id="@+id/navigate_to_convert_currency_fragment"
             app:destination="@id/convertCurrencyFragment" />
     </fragment>
     <fragment
