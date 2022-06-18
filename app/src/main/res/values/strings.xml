@@ -2,4 +2,13 @@
     <string name="app_name">Currex</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Tentang Currex  -->
+    <string name="or">or</string>
+    <string name="about_us">Currex merupakan aplikasi yang menyediakan informasi tentang exchange rates dari suatu currency, baik itu cryptocurrency maupun nation currency.</string>
+    <string name="about_api_title">About the API</string>
+    <string name="about_api">If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.</string>
+    <string name="exchangerate_host">exchangerate.host</string>
+    <string name="support_exchangerate_host">support exchangerate.host</string>
+    <string name="copyright_text">Made with ❤️ by Judah</string>
 </resources>

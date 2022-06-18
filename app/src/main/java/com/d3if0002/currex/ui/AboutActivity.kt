@@ -1,0 +1,42 @@
+package com.d3if0002.currex.ui
+
+import android.content.Intent
+import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import com.d3if0002.currex.R
+
+class AboutActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_about)
+
+        setUI()
+    }
+
+    private fun setUI() {
+        val viewBtn = findViewById<Button>(R.id.view_button)
+        val supportBtn = findViewById<Button>(R.id.support_button)
+
+        viewBtn.setOnClickListener(this)
+        supportBtn.setOnClickListener(this)
+    }
+
+    override fun onClick(p0: View?) {
+        var url = ""
+
+        when(p0?.id) {
+            R.id.view_button -> {
+                url = "https://exchangerate.host/#/"
+            }
+            R.id.support_button -> {
+                url = "https://exchangerate.host/#/donate"
+            }
+        }
+
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        this.startActivity(intent)
+    }
+}
