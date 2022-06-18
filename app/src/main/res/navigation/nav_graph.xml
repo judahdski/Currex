@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_crypto" />
     <fragment
         android:id="@+id/convertCurrencyFragment"
-        android:name="com.d3if0002.currex.ui.convert_currency.ConvertCurrencyFragment"
+        android:name="com.d3if0002.currex.ui.convertCurrency.ConvertCurrencyFragment"
         android:label="fragment_convert_currency"
         tools:layout="@layout/fragment_convert_currency" />
 </navigation>

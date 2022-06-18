@@ -1,4 +1,4 @@
-package com.d3if0002.currex.ui.convert_currency
+package com.d3if0002.currex.ui.convertCurrency
 
 import androidx.lifecycle.ViewModel
 
