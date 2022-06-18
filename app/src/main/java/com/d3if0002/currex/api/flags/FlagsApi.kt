@@ -1,6 +1,6 @@
 package com.d3if0002.currex.api.flags
 
-import com.d3if0002.currex.const.Constant
+import com.d3if0002.currex.utils.Constant
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

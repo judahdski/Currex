@@ -1,6 +1,6 @@
 package com.d3if0002.currex.api.exchangeRate
 
-import com.d3if0002.currex.const.Constant
+import com.d3if0002.currex.utils.Constant
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,7 +12,7 @@ object ExchangeRateApi {
             .build()
     }
 
-    val service by lazy {
-        retrofit.create(ExchangeRateApi::class.java)
+    val service: ExchangeRateInterface by lazy {
+        retrofit.create(ExchangeRateInterface::class.java)
     }
 }
