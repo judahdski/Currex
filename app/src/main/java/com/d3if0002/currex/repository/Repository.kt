@@ -1,6 +1,7 @@
 package com.d3if0002.currex.repository
 
 import com.d3if0002.currex.api.exchangeRate.ExchangeRateApi
+import com.d3if0002.currex.api.flags.FlagsApi
 
 /*
     note:
@@ -27,4 +28,8 @@ class Repository {
     suspend fun getFluctuationDataRepo(
         startDate: String, endDate: String
     ) = ExchangeRateApi.service.getFluctuationDataService(startDate, endDate)
+
+    suspend fun getCountryInfoRepo(
+        countryCode: String
+    ) = FlagsApi.service.getCountryInfoService(countryCode)
 }
