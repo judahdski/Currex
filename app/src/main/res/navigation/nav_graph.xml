@@ -9,7 +9,17 @@
         android:id="@+id/homeFragment"
         android:name="com.d3if0002.currex.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_forexFragment"
+            app:destination="@id/forexFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cryptoFragment"
+            app:destination="@id/cryptoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_convertCurrencyFragment"
+            app:destination="@id/convertCurrencyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/forexFragment"
         android:name="com.d3if0002.currex.ForexFragment"
