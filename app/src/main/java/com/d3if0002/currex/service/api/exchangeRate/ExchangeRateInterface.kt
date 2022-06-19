@@ -1,4 +1,4 @@
-package com.d3if0002.currex.api.exchangeRate
+package com.d3if0002.currex.service.api.exchangeRate
 
 import com.d3if0002.currex.model.*
 import retrofit2.Response

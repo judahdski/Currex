@@ -1,18 +1,18 @@
-package com.d3if0002.currex.api.exchangeRate
+package com.d3if0002.currex.service.api.flags
 
 import com.d3if0002.currex.utils.Constant
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ExchangeRateApi {
+object FlagsApi {
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(Constant.EXCHANGE_BASE_URL)
+            .baseUrl(Constant.FLAGS_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val service: ExchangeRateInterface by lazy {
-        retrofit.create(ExchangeRateInterface::class.java)
+    val service by lazy {
+        retrofit.create(FlagsInterface::class.java)
     }
 }

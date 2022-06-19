@@ -1,7 +1,7 @@
 package com.d3if0002.currex.repository
 
-import com.d3if0002.currex.api.exchangeRate.ExchangeRateApi
-import com.d3if0002.currex.api.flags.FlagsApi
+import com.d3if0002.currex.service.api.exchangeRate.ExchangeRateApi
+import com.d3if0002.currex.service.api.flags.FlagsApi
 
 /*
     note:

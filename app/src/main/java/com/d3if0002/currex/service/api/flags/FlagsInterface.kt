@@ -1,4 +1,4 @@
-package com.d3if0002.currex.api.flags
+package com.d3if0002.currex.service.api.flags
 
 import com.d3if0002.currex.model.Country
 import retrofit2.http.GET

@@ -7,13 +7,13 @@
     android:background="@color/dark_blue"
     android:paddingHorizontal="16dp"
     android:paddingVertical="32dp"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <TextView
         android:id="@+id/greeting_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello, Judah"
+        android:text="@string/greeting_user"
         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
