@@ -24,6 +24,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/forex_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/today_date"
@@ -33,6 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/forex_base"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -43,14 +45,10 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableLayout
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,10 +76,10 @@
                 android:text="@string/rate"
                 android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
                 android:textColor="@color/white" />
-        </TableRow>
-    </TableLayout>
+    </TableRow>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forex_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp" />
