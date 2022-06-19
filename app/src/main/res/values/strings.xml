@@ -41,4 +41,8 @@
     <!--  Notification channel  -->
     <string name="channel_name">Updater</string>
     <string name="channel_desc">Update data rate otomatis</string>
+
+    <!--  Notification  -->
+    <string name="notif_title">Ada data rate baru!</string>
+    <string name="notif_text">Ayo cek sekarang keburu berubah lagi harganya..</string>
 </resources>
