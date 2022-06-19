@@ -11,11 +11,19 @@
     <string name="exchangerate_host">exchangerate.host</string>
     <string name="support_exchangerate_host">support exchangerate.host</string>
     <string name="copyright_text">Made with ❤️ by Judah</string>
-    <string name="market_hari_ini">Market hari ini</string>
-    <string name="today_date">16 Juni 2022</string>
+
+    <!--  Home fragment  -->
+    <string name="bagaimana_kabarmu">Bagaimana kabarmu?</string>
+    <string name="kamu_mau_ngapain_hari_ini">Kamu mau ngapain hari ini?</string>
     <string name="foreign_exchange">Foreign Exchange</string>
     <string name="crypto_exchange">Crypto Exchange</string>
     <string name="konversi_mata_uang">Konversi Mata Uang</string>
-    <string name="kamu_mau_ngapain_hari_ini">Kamu mau ngapain hari ini?</string>
-    <string name="bagaimana_kabarmu">Bagaimana kabarmu?</string>
+
+    <!--    -->
+    <string name="market_hari_ini">Market hari ini</string>
+    <string name="today_date">16 Juni 2022</string>
+    <string name="pairs">Pairs</string>
+    <string name="code_symbol">Code/Symbol</string>
+    <string name="rate">Rate</string>
+    <string name="base_currency">Base : USD</string>
 </resources>

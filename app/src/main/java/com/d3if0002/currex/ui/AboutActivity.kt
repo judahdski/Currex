@@ -11,14 +11,20 @@ import com.d3if0002.currex.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var binding: ActivityAboutBinding
+    private var _binding: ActivityAboutBinding? = null
+    private val binding = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAboutBinding.inflate(layoutInflater)
+        _binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setUI()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun setUI() {
