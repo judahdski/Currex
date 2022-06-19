@@ -7,6 +7,10 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.getSystemService
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.d3if0002.currex.R
 
 class MainActivity : AppCompatActivity() {
@@ -14,11 +18,14 @@ class MainActivity : AppCompatActivity() {
         const val CHANNEL_ID = "updater"
     }
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar?.hide()
+        navController = findNavController(R.id.myNavHost)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.channel_name)
@@ -30,5 +37,9 @@ class MainActivity : AppCompatActivity() {
                 as NotificationManager
             manager.createNotificationChannel(channel)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp()
     }
 }

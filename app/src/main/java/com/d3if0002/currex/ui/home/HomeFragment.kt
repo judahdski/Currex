@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.Navigation
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentHomeBinding
 
@@ -19,12 +20,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this)[HomeViewModel::class.java]
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        display action bar
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun onCreateView(
@@ -61,6 +56,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+        val buttonId: Int = when(p0?.id) {
+            R.id.foreign_exchange_btn -> R.id.navigate_to_forex_fragment
+            R.id.crypto_exchange_btn -> R.id.navigate_to_crypto_fragment
+            R.id.konversi_mata_uang_btn -> R.id.navigate_to_convert_currency_fragment
+            else -> 0
+        }
 
+        Navigation.findNavController(view!!).navigate(buttonId)
     }
 }
