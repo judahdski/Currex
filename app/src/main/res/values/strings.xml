@@ -26,4 +26,10 @@
     <string name="code_symbol">Code/Symbol</string>
     <string name="rate">Rate</string>
     <string name="base_currency">Base : USD</string>
+    <string name="from_tf">Dari</string>
+    <string name="to_tf">Ke</string>
+    <string name="amount_tf">Jumlah</string>
+    <string name="latest_rates">Harga terakhir</string>
+    <string name="comparation_rates">1 USD = 14,450 IDR</string>
+    <string name="konversi_btn">Konversi</string>
 </resources>
