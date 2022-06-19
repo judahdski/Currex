@@ -19,17 +19,26 @@
     <string name="crypto_exchange">Crypto Exchange</string>
     <string name="konversi_mata_uang">Konversi Mata Uang</string>
 
-    <!--    -->
+    <!--  Fragments  -->
     <string name="market_hari_ini">Market hari ini</string>
     <string name="today_date">16 Juni 2022</string>
     <string name="pairs">Pairs</string>
     <string name="code_symbol">Code/Symbol</string>
     <string name="rate">Rate</string>
     <string name="base_currency">Base : USD</string>
+
+    <!--  Home fragment  -->
+    <string name="greeting_user">Hello, Judah</string>
+
+    <!--  Convert currency  -->
     <string name="from_tf">Dari</string>
     <string name="to_tf">Ke</string>
     <string name="amount_tf">Jumlah</string>
     <string name="latest_rates">Harga terakhir</string>
     <string name="comparation_rates">1 USD = 14,450 IDR</string>
     <string name="konversi_btn">Konversi</string>
+
+    <!--  Notification channel  -->
+    <string name="channel_name">Updater</string>
+    <string name="channel_desc">Update data rate otomatis</string>
 </resources>
