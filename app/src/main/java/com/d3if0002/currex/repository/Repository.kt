@@ -11,7 +11,7 @@ import com.d3if0002.currex.service.api.flags.FlagsApi
 
 class Repository {
 
-    suspend fun getLatestRatesRepo(symbol: String) = ExchangeRateApi.service.getLatestRatesService(symbol)
+    suspend fun getLatestRatesRepo(vararg symbol: String) = ExchangeRateApi.service.getLatestRatesService(*symbol)
 
     suspend fun getSupportedSymbolsRepo() = ExchangeRateApi.service.getSupportedSymbolsService()
 
@@ -30,6 +30,6 @@ class Repository {
     ) = ExchangeRateApi.service.getFluctuationDataService(startDate, endDate)
 
     suspend fun getCountryInfoRepo(
-        countryCode: String
-    ) = FlagsApi.service.getCountryInfoService(countryCode)
+        currencyCode: String
+    ) = FlagsApi.service.getCountryInfoService(currencyCode)
 }

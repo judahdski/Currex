@@ -20,7 +20,7 @@ interface ExchangeRateInterface {
      */
     @GET("/latest")
     suspend fun getLatestRatesService(
-        @Query("base") symbol: String
+        @Query("base") vararg symbols: String
     ) : Response<Rate>
 
     /*
