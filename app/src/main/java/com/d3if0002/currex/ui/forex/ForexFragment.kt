@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
 import com.d3if0002.currex.model.ApiStatus
 import com.d3if0002.currex.repository.Repository
@@ -26,6 +28,7 @@ class ForexFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModel.getLatestRatesViewModel()
+
         _binding = FragmentForexBinding.inflate(inflater)
         return binding.root
     }
@@ -33,17 +36,15 @@ class ForexFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getRates.observe(viewLifecycleOwner) {
+        setAdapter()
+    }
 
-        }
-        viewModel.getFlags.observe(viewLifecycleOwner) {
-            it.forEach {
+    fun setAdapter() {
+        val forexRv = binding.forexRv
 
-            }
-        }
-        viewModel.getStatus.observe(viewLifecycleOwner) {
-            updateProgress(it)
-        }
+        forexRv.adapter = ForexAdapter()
+        forexRv.layoutManager = LinearLayoutManager(requireContext())
+        forexRv.setHasFixedSize(true)
     }
 
     fun updateProgress(status: ApiStatus) {
