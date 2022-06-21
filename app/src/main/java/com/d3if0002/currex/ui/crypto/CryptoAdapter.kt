@@ -1,8 +1,11 @@
 package com.d3if0002.currex.ui.crypto
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.CryptoLayoutItemBinding
 
 class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
@@ -21,11 +24,21 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
         with(holder) {
             with(binding) {
                 symbolCrypto.text = dataTemp[position].toString()
+
+                priceCrypto.text = "$${(dataTemp[position] * ((1..10).random()) * 100)}"
+
+                Glide.with(itemView)
+                    .load(R.drawable.eu)
+                    .circleCrop()
+                    .into(baseImgCrypto)
+
+                Glide.with(itemView)
+                    .load(R.drawable.btc)
+                    .circleCrop()
+                    .into(targetImgCrypto)
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = dataTemp.size
 }

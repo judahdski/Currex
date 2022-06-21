@@ -78,7 +78,7 @@
             android:layout_gravity="center"
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             android:textColor="@color/white"
-            android:text="@string/temp_price" />
+            tools:text="$1,650" />
     </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline

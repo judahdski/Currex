@@ -3,6 +3,8 @@ package com.d3if0002.currex.ui.forex
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.ForexLayoutItemBinding
 
 class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
@@ -18,7 +20,23 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ForexViewHolder, position: Int) {
-        holder.binding.symbolForex.text = dataTemp[position].toString()
+        with(holder) {
+            with(binding) {
+                symbolForex.text = dataTemp[position].toString()
+
+                rateForex.text = "$${(dataTemp[position] * ((1..10).random()) * 64)}"
+
+                Glide.with(itemView)
+                    .load(R.drawable.eu)
+                    .circleCrop()
+                    .into(baseImgForex)
+
+                Glide.with(itemView)
+                    .load(R.drawable.btc)
+                    .circleCrop()
+                    .into(targetImgForex)
+            }
+        }
     }
 
     override fun getItemCount() = dataTemp.size

@@ -45,5 +45,4 @@
     <!--  Notification  -->
     <string name="notif_title">Ada data rate baru!</string>
     <string name="notif_text">Ayo cek sekarang keburu berubah lagi harganya..</string>
-    <string name="temp_price">$1,045</string>
 </resources>
