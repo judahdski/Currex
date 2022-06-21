@@ -5,10 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentCryptoBinding
+import com.d3if0002.currex.repository.Repository
 
 class CryptoFragment : Fragment() {
+    private val viewModel: CryptoViewModel by lazy {
+        val repo = Repository()
+        val factory = CryptoViewModelFactory(repo)
+        ViewModelProvider(requireActivity(), factory).get(CryptoViewModel::class.java)
+    }
+
     private var _binding: FragmentCryptoBinding? = null
     private val binding get() = _binding!!
 

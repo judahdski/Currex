@@ -1,6 +1,7 @@
 package com.d3if0002.currex.ui.crypto
 
 import androidx.lifecycle.ViewModel
+import com.d3if0002.currex.repository.Repository
 
 /*
     note:
@@ -10,5 +11,5 @@ import androidx.lifecycle.ViewModel
         - live data getter => <req. method><live data var> (exp. getLatestRates)
  */
 
-class CryptoViewModel : ViewModel() {
+class CryptoViewModel(private val repo: Repository) : ViewModel() {
 }
