@@ -32,6 +32,10 @@ class CryptoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+        viewModel.rates.observe(viewLifecycleOwner) {
+            val adapter = CryptoAdapter()
+            adapter.updateRateData(it)
+        }
     }
 
     private fun setAdapter() {

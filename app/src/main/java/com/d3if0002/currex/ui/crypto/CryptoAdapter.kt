@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.CryptoLayoutItemBinding
+import com.d3if0002.currex.db.RateEntity
 
 class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
     private val dataTemp = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    private val rates = mutableListOf<RateEntity>()
 
     class CryptoViewHolder(val binding: CryptoLayoutItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -38,6 +40,12 @@ class CryptoAdapter : RecyclerView.Adapter<CryptoAdapter.CryptoViewHolder>() {
                     .into(targetImgCrypto)
             }
         }
+    }
+
+    fun updateRateData(data: List<RateEntity>) {
+        rates.clear()
+        rates.addAll(data)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = dataTemp.size

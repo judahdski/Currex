@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.ForexLayoutItemBinding
+import com.d3if0002.currex.db.RateEntity
 
 class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
     private val dataTemp = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    private val rates = mutableListOf<RateEntity>()
 
     class ForexViewHolder(val binding: ForexLayoutItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -37,6 +39,12 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
                     .into(targetImgForex)
             }
         }
+    }
+
+    fun updateAdapterUI(data: List<RateEntity>) {
+        rates.clear()
+        rates.addAll(data)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = dataTemp.size

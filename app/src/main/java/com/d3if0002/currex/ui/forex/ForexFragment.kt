@@ -26,8 +26,6 @@ class ForexFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.getLatestRatesViewModel()
-
         _binding = FragmentForexBinding.inflate(inflater)
         return binding.root
     }
@@ -36,6 +34,10 @@ class ForexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+        viewModel.rates.observe(viewLifecycleOwner) {
+            val adapter = ForexAdapter()
+            adapter.updateAdapterUI(it)
+        }
     }
 
     private fun setAdapter() {

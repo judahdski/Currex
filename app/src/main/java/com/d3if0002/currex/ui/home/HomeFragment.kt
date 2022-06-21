@@ -48,10 +48,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        Log.d("Debugss", "onDestroy di HomeFragment dipanggil.")
         viewModel.schedulerUpdate(requireActivity().application)
-
         _binding = null
     }
 
