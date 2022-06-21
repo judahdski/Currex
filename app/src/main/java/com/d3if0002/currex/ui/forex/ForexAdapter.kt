@@ -18,7 +18,7 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ForexViewHolder, position: Int) {
-        holder.binding.textView.text = dataTemp[position].toString()
+        holder.binding.symbolForex.text = dataTemp[position].toString()
     }
 
     override fun getItemCount() = dataTemp.size

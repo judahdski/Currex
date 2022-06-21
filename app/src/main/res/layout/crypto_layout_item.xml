@@ -19,12 +19,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/base_img_forex"
+            android:id="@+id/base_img_crypto"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
-            tools:src="@drawable/eu" />
+            android:src="@drawable/eu" />
 
         <ImageView
             android:layout_width="6dp"
@@ -36,12 +36,12 @@
             android:importantForAccessibility="no" />
 
         <ImageView
-            android:id="@+id/target_img_forex"
+            android:id="@+id/target_img_crypto"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="end"
             android:importantForAccessibility="no"
-            tools:src="@drawable/btc" />
+            android:src="@drawable/btc" />
     </LinearLayout>
 
     <FrameLayout
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/symbol_forex"
+            android:id="@+id/symbol_crypto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/rate_forex"
+            android:id="@+id/price_crypto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

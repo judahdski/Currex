@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentCryptoBinding
 import com.d3if0002.currex.repository.Repository
@@ -26,6 +27,19 @@ class CryptoFragment : Fragment() {
     ): View {
         _binding = FragmentCryptoBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setAdapter()
+    }
+
+    private fun setAdapter() {
+        val cryptoRv = binding.cryptoRv
+        cryptoRv.adapter = CryptoAdapter()
+        cryptoRv.layoutManager = LinearLayoutManager(requireContext())
+        cryptoRv.setHasFixedSize(true)
     }
 
     override fun onDestroy() {
