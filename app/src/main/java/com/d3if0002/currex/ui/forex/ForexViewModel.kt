@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.d3if0002.currex.model.ApiStatus
-import com.d3if0002.currex.repository.Repository
+import com.d3if0002.currex.repository.RepositoryAPI
 import kotlinx.coroutines.launch
 
 /*
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
         - live data getter => <req. method><live data var> (exp. getLatestRates)
  */
 
-class ForexViewModel(private val repo: Repository) : ViewModel() {
+class ForexViewModel(private val repo: RepositoryAPI) : ViewModel() {
 
     private val rateFromApi: MutableLiveData<Map<String, Double>> = MutableLiveData()
     private val status: MutableLiveData<ApiStatus> = MutableLiveData()
@@ -31,7 +31,7 @@ class ForexViewModel(private val repo: Repository) : ViewModel() {
                 val country = repo.getCountryInfoRepo(it)
                 flagList.add(country.flags["png"] as String)
             }
-            val responseRates = repo.getLatestRatesRepo(*symbolArr)
+            val responseRates = repo.getLatestRatesRepo("USD", "IDR", "JPY")
 
             if (responseRates.isSuccessful) {
                 status.postValue(ApiStatus.SUCCESS)

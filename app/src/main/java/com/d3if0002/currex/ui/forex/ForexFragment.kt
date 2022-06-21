@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
 import com.d3if0002.currex.model.ApiStatus
-import com.d3if0002.currex.repository.Repository
+import com.d3if0002.currex.repository.RepositoryAPI
 
 class ForexFragment : Fragment() {
 
     private val viewModel: ForexViewModel by lazy {
-        val repo = Repository()
+        val repo = RepositoryAPI()
         val factory = ForexViewModelFactory(repo)
         ViewModelProvider(this, factory)[ForexViewModel::class.java]
     }
@@ -39,7 +38,7 @@ class ForexFragment : Fragment() {
         setAdapter()
     }
 
-    fun setAdapter() {
+    private fun setAdapter() {
         val forexRv = binding.forexRv
 
         forexRv.adapter = ForexAdapter()

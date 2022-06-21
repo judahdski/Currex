@@ -24,20 +24,6 @@ interface ExchangeRateInterface {
     ) : Response<Rate>
 
     /*
-        Historical Rates
-     */
-    @GET("/{date}")
-    suspend fun getHistoricalRatesService(
-        @Path("date") date: String
-    ) : Response<Rate>
-
-    /*
-        Supported Symbols
-     */
-    @GET("/symbols")
-    suspend fun getSupportedSymbolsService() : Symbol
-
-    /*
         Convert Currency
      */
     @GET("/convert")
@@ -45,28 +31,4 @@ interface ExchangeRateInterface {
         @Query("from") baseSymbol: String,
         @Query("to") toSymbol: String,
     ) : Response<ConvertedCurrency>
-
-    /*
-        EU Vat rates
-     */
-    @GET("/vat_rates")
-    suspend fun getEUVatRatesService() : Response<EUVatRate>
-
-    /*
-        Time-series data
-     */
-    @GET("/timeseries")
-    suspend fun getTimeSeriesDataService(
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-    ) : Response<TimeSeriesData>
-
-    /*
-        Fluctuation data
-     */
-    @GET("/fluctuation")
-    suspend fun getFluctuationDataService(
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-    ) : Response<FluctuationData>
 }
