@@ -30,5 +30,6 @@ interface ExchangeRateInterface {
     suspend fun convertCurrencyService(
         @Query("from") baseSymbol: String,
         @Query("to") toSymbol: String,
+        @Query("amount") amount: Int,
     ) : Response<ConvertedCurrency>
 }

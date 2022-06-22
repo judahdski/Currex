@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentCryptoBinding
-import com.d3if0002.currex.repository.RepositoryAPI
+import com.d3if0002.currex.db.RateDB
+import com.d3if0002.currex.repository.RepositoryDB
 
 class CryptoFragment : Fragment() {
     private val viewModel: CryptoViewModel by lazy {
-        val repo = RepositoryAPI()
+        val db = RateDB.getInstance(requireContext())
+        val repo = RepositoryDB(db.dao)
         val factory = CryptoViewModelFactory(repo)
         ViewModelProvider(requireActivity(), factory).get(CryptoViewModel::class.java)
     }

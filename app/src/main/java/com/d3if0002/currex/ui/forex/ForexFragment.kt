@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
+import com.d3if0002.currex.db.RateDB
 import com.d3if0002.currex.model.ApiStatus
-import com.d3if0002.currex.repository.RepositoryAPI
+import com.d3if0002.currex.repository.RepositoryDB
 
 class ForexFragment : Fragment() {
 
     private val viewModel: ForexViewModel by lazy {
-        val repo = RepositoryAPI()
+        val db = RateDB.getInstance(requireContext())
+        val repo = RepositoryDB(db.dao)
         val factory = ForexViewModelFactory(repo)
         ViewModelProvider(this, factory)[ForexViewModel::class.java]
     }
@@ -49,7 +51,7 @@ class ForexFragment : Fragment() {
     }
 
     fun updateProgress(status: ApiStatus) {
-        when(status) {
+        when (status) {
             ApiStatus.LOADING -> {}
             ApiStatus.SUCCESS -> {}
             ApiStatus.FAILED -> {}

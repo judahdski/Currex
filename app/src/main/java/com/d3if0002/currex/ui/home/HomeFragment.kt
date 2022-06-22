@@ -1,21 +1,18 @@
 package com.d3if0002.currex.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.Navigation
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentHomeBinding
+import com.d3if0002.currex.ui.AboutActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    private  var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by lazy {
@@ -32,7 +29,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
         setUI()
     }
 
@@ -53,7 +50,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        val buttonId: Int = when(p0?.id) {
+        val buttonId: Int = when (p0?.id) {
             R.id.foreign_exchange_btn -> R.id.navigate_to_forex_fragment
             R.id.crypto_exchange_btn -> R.id.navigate_to_crypto_fragment
             R.id.konversi_mata_uang_btn -> R.id.navigate_to_convert_currency_fragment
@@ -62,4 +59,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         Navigation.findNavController(view!!).navigate(buttonId)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.tentang_kami_menu_item -> {
+                val intent = Intent(requireContext(), AboutActivity::class.java)
+                startActivity(intent)
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

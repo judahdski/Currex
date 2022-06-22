@@ -1,6 +1,12 @@
 package com.d3if0002.currex.ui.convertCurrency
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.d3if0002.currex.model.ApiStatus
+import com.d3if0002.currex.repository.RepositoryAPI
+import kotlinx.coroutines.launch
 
 /*
     note:
@@ -10,5 +16,25 @@ import androidx.lifecycle.ViewModel
         - live rates getter => <req. method><live rates var> (exp. getLatestRates)
  */
 
-class ConvertCurrencyViewModel : ViewModel() {
+class ConvertCurrencyViewModel(private val repo: RepositoryAPI) : ViewModel() {
+    private val _result: MutableLiveData<Any> = MutableLiveData()
+    private val _status: MutableLiveData<ApiStatus> = MutableLiveData()
+
+    fun convertCurrency(base: String, target: String, amount: Int) {
+        viewModelScope.launch {
+            _status.postValue(ApiStatus.LOADING)
+            val response = repo.convertCurrencyRepo(base, target, amount)
+
+            if (response.isSuccessful) {
+                _status.postValue(ApiStatus.SUCCESS)
+                _result.postValue(response.body()?.result)
+            } else {
+                _status.postValue(ApiStatus.FAILED)
+                _result.postValue(response.errorBody())
+            }
+        }
+    }
+
+    val result get() = _result
+    val status get() = _status
 }

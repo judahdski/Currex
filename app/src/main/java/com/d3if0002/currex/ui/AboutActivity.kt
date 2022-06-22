@@ -12,19 +12,19 @@ import com.d3if0002.currex.databinding.ActivityAboutBinding
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     private var _binding: ActivityAboutBinding? = null
-    private val binding = _binding!!
+    private val binding get() =  _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setActionbarTitle()
         setUI()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun setActionbarTitle() {
+        supportActionBar?.title = getString(R.string.tentang_kami)
     }
 
     private fun setUI() {
@@ -49,5 +49,10 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         this.startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -2,10 +2,10 @@ package com.d3if0002.currex.ui.crypto
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.d3if0002.currex.repository.RepositoryAPI
+import com.d3if0002.currex.repository.RepositoryDB
 
-class CryptoViewModelFactory(private val RepositoryAPI: RepositoryAPI) : ViewModelProvider.Factory {
+class CryptoViewModelFactory(private val repo: RepositoryDB) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CryptoViewModel(RepositoryAPI) as T
+        return CryptoViewModel(repo) as T
     }
 }
