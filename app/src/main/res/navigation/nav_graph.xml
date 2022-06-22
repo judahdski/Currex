@@ -14,9 +14,6 @@
             android:id="@+id/navigate_to_forex_fragment"
             app:destination="@id/forexFragment" />
         <action
-            android:id="@+id/navigate_to_crypto_fragment"
-            app:destination="@id/cryptoFragment" />
-        <action
             android:id="@+id/navigate_to_convert_currency_fragment"
             app:destination="@id/convertCurrencyFragment" />
     </fragment>
@@ -25,11 +22,6 @@
         android:name="com.d3if0002.currex.ui.forex.ForexFragment"
         android:label="@string/foreign_exchange"
         tools:layout="@layout/fragment_forex" />
-    <fragment
-        android:id="@+id/cryptoFragment"
-        android:name="com.d3if0002.currex.ui.crypto.CryptoFragment"
-        android:label="@string/crypto_exchange"
-        tools:layout="@layout/fragment_crypto" />
     <fragment
         android:id="@+id/convertCurrencyFragment"
         android:name="com.d3if0002.currex.ui.convertCurrency.ConvertCurrencyFragment"

@@ -30,6 +30,7 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
 
                 Glide.with(itemView)
                     .load(R.drawable.eu)
+                        // TODO: tambahin error img klo stock gambar dri api gaada
                     .circleCrop()
                     .into(baseImgForex)
 

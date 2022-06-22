@@ -11,7 +11,7 @@ import com.d3if0002.currex.service.api.flags.FlagsApi
 
 class RepositoryAPI {
 
-    suspend fun getLatestRatesRepo(vararg symbol: String) = ExchangeRateApi.service.getLatestRatesService(*symbol)
+    suspend fun getLatestRatesRepo(symbol: String) = ExchangeRateApi.service.getLatestRatesService(symbol)
 
     suspend fun convertCurrencyRepo(base: String, to: String, amount: Int) = ExchangeRateApi.service.convertCurrencyService(base, to, amount)
 

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "RateData")
 data class RateEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long = 0L,
     val baseImg: String,
     val targetImg: String,
     val symbol: String,
