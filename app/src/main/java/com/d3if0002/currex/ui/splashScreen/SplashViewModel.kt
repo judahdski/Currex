@@ -1,7 +1,7 @@
 package com.d3if0002.currex.ui.splashScreen
 
 import android.content.Context
-import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,60 +9,51 @@ import com.d3if0002.currex.db.RateEntity
 import com.d3if0002.currex.model.ApiStatus
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
-import com.d3if0002.currex.ui.MainActivity
 import kotlinx.coroutines.launch
 
 class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: RepositoryDB) :
     ViewModel() {
     private val _rates: MutableLiveData<Map<String, Double>> = MutableLiveData()
     private val _status: MutableLiveData<ApiStatus> = MutableLiveData()
-    private val _flags: MutableLiveData<List<String>> = MutableLiveData()
 
-    fun getLatestRatesViewModel(ctx: Context, baseCurrency: String): Boolean {
+    fun getLatestRatesViewModel(ctx: Context, baseCurrency: String) {
         viewModelScope.launch {
             _status.postValue(ApiStatus.LOADING)
 
             try {
-                // TODO: ambil data dari API
                 val response = repoAPI.getLatestRatesRepo(baseCurrency)
 
-                // TODO: kalo berhasil masukin ke db
                 if (response.isSuccessful) {
-                    val rates = response.body()?.rates
-
-                    // TODO: masukin ke db
-                    rates?.forEach {
-                        val countryCode = getCountryFlag(it.key)
-
-                        val rateEntity = RateEntity(
-                            baseImg = "https://countryflagsapi.com/png/$countryCode",
-                            targetImg = "https://countryflagsapi.com/png/$countryCode",
-                            symbol = "$baseCurrency - ${it.key}",
-                            rate = "${it.value}",
-                        )
-
-                        repoDB.insertRateForex(rateEntity)
-                    }
-
-                    // TODO: kalo gagal ambil error msg nya
+                    _status.postValue(ApiStatus.SUCCESS)
+                    _rates.postValue(response.body()?.rates)
                 } else {
-                    // TODO: ubah recycler view jadi error text
                     _status.postValue(ApiStatus.FAILED)
+                    Log.d("DEBUGZZ", "error response msg: ${response.errorBody().toString()}")
+                    /*
+                        TODO: save ke datastore klo statusnya failed, biar nanti di forex fragment
+                        tinggal ambil statenya trus ubah viewnya
+                     */
                 }
             } catch (e: Exception) {
-                // TODO: ubah recycler view jadi error text
                 _status.postValue(ApiStatus.FAILED)
+                Log.d("DEBUGZZ", "exception: ${e.message.toString()}")
+                // TODO: sama kek yg di atas
             }
         }
-
-        return true
     }
 
-    private fun getCountryFlag(currencyCode: String): String {
-        return "usa"
+    fun insertData(baseImg: String, targetImg: String, symbol: String, rate: String) {
+        viewModelScope.launch {
+            val rateEntity = RateEntity(
+                baseImg = baseImg,
+                targetImg = targetImg,
+                symbol = symbol,
+                rate = rate,
+            )
+            repoDB.insertRateForex(rateEntity)
+        }
     }
 
     val status get() = _status
-    val flags get() = _flags
     val rates get() = _rates
 }

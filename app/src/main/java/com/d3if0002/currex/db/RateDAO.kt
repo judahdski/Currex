@@ -10,6 +10,6 @@ interface RateDAO {
     @Insert
     fun insertRate(rate: RateEntity)
 
-    @Query("SELECT * FROM RateData ORDER BY id ASC LIMIT 15")
+    @Query("SELECT * FROM RateData ORDER BY rate DESC LIMIT 15")
     fun getAllRates(): LiveData<List<RateEntity>>
 }

@@ -9,7 +9,6 @@ import com.d3if0002.currex.databinding.ForexLayoutItemBinding
 import com.d3if0002.currex.db.RateEntity
 
 class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
-    private val dataTemp = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     private val rates = mutableListOf<RateEntity>()
 
     class ForexViewHolder(val binding: ForexLayoutItemBinding) :
@@ -22,20 +21,23 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ForexViewHolder, position: Int) {
+        val item = rates[position]
         with(holder) {
             with(binding) {
-                symbolForex.text = dataTemp[position].toString()
+                symbolForex.text = item.symbol
 
-                rateForex.text = "$${(dataTemp[position] * ((1..10).random()) * 64)}"
+                rateForex.text = item.rate
+//                rateForex.text = "$${(dataTemp[position] * ((1..10).random()) * 64)}"
 
                 Glide.with(itemView)
-                    .load(R.drawable.eu)
-                        // TODO: tambahin error img klo stock gambar dri api gaada
+                    .load(item.baseImg)
+                    .error(R.drawable.exchange)
                     .circleCrop()
                     .into(baseImgForex)
 
                 Glide.with(itemView)
-                    .load(R.drawable.btc)
+                    .load(item.targetImg)
+                    .error(R.drawable.exchange)
                     .circleCrop()
                     .into(targetImgForex)
             }
@@ -48,5 +50,5 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun getItemCount() = dataTemp.size
+    override fun getItemCount() = rates.size
 }

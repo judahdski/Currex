@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="32dp"
+    android:paddingHorizontal="22dp"
+    android:paddingVertical="24dp"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/kamu_mau_ngapain_hari_ini"
-            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
             android:textColor="@color/white" />
 
         <Button
@@ -53,19 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:backgroundTint="@color/card"
             android:text="@string/foreign_exchange" />
-
-        <Button
-            android:id="@+id/crypto_exchange_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/card"
-            android:text="@string/crypto_exchange" />
 
         <Button
             android:id="@+id/konversi_mata_uang_btn"

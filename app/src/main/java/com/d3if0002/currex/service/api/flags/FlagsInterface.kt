@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface FlagsInterface {
-    @GET("/currency/{currency_code}")
+    @GET("currency/{currency_code}")
     suspend fun getCountryInfoService(
         @Path("currency_code") currCode: String
     ) : Country

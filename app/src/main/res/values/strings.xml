@@ -13,10 +13,10 @@
     <string name="copyright_text">Made with ❤️ by Judah</string>
 
     <!--  Home fragment  -->
+    <string name="greeting_user">Halo,</string>
     <string name="bagaimana_kabarmu">Bagaimana kabarmu?</string>
     <string name="kamu_mau_ngapain_hari_ini">Kamu mau ngapain hari ini?</string>
     <string name="foreign_exchange">Foreign Exchange</string>
-    <string name="crypto_exchange">Crypto Exchange</string>
     <string name="konversi_mata_uang">Konversi Mata Uang</string>
 
     <!--  Fragments  -->
@@ -26,9 +26,6 @@
     <string name="code_symbol">Code/Symbol</string>
     <string name="rate">Rate</string>
     <string name="base_currency">Base : USD</string>
-
-    <!--  Home fragment  -->
-    <string name="greeting_user">Hello, Judah</string>
 
     <!--  Convert currency  -->
     <string name="from_tf">Dari</string>

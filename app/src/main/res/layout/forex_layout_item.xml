@@ -24,7 +24,7 @@
             android:layout_height="18dp"
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
-            tools:src="@drawable/eu" />
+            tools:src="@drawable/exchange" />
 
         <ImageView
             android:layout_width="6dp"

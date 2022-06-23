@@ -35,11 +35,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun setUI() {
         val forexBtn = binding.foreignExchangeBtn
-        val cryptoExBtn = binding.cryptoExchangeBtn
         val convertCurrBtn = binding.konversiMataUangBtn
 
         forexBtn.setOnClickListener(this)
-        cryptoExBtn.setOnClickListener(this)
         convertCurrBtn.setOnClickListener(this)
     }
 
@@ -52,7 +50,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         val buttonId: Int = when (p0?.id) {
             R.id.foreign_exchange_btn -> R.id.navigate_to_forex_fragment
-            R.id.crypto_exchange_btn -> R.id.navigate_to_crypto_fragment
             R.id.konversi_mata_uang_btn -> R.id.navigate_to_convert_currency_fragment
             else -> 0
         }

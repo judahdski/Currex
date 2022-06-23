@@ -1,6 +1,7 @@
 package com.d3if0002.currex.ui.forex
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class ForexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+        // TODO: check status datanya, klo true tampilin data dri db, klo false tampilin error text
         viewModel.rates.observe(viewLifecycleOwner) {
             val adapter = ForexAdapter()
             adapter.updateAdapterUI(it)

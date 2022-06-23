@@ -20,7 +20,8 @@ interface ExchangeRateInterface {
      */
     @GET("/latest")
     suspend fun getLatestRatesService(
-        @Query("base") symbol: String
+        @Query("base") baseCurrency: String,
+        @Query("places") places: Int,
     ) : Response<Rate>
 
     /*
