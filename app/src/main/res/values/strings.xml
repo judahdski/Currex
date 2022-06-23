@@ -42,7 +42,7 @@
     <!--  Notification  -->
     <string name="notif_title">Ada data rate baru!</string>
     <string name="notif_text">Ayo cek sekarang keburu berubah lagi harganya..</string>
-    <string name="result_convert">IDR 14,450</string>
+    <string name="result_convert">%1$s %2$.2f</string>
     <string name="tentang_kami">Tentang Kami</string>
     <string name="logo">Logo</string>
 </resources>

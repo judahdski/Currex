@@ -43,15 +43,21 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         setUI()
         viewModel.result.observe(viewLifecycleOwner) {
-            setResultText(it as Double)
+            setResultText(it)
         }
         viewModel.status.observe(viewLifecycleOwner) {
             updateProgressBar(it)
         }
     }
 
-    fun setResultText(number: Double) {
-        resultText.text = number.toString()
+    private fun setResultText(text: Any) {
+        if (text is Double) {
+            val target = toEditText.editText?.text.toString().uppercase()
+
+            resultText.text = getString(R.string.result_convert, target, text)
+        } else {
+            resultText.text = text.toString()
+        }
     }
 
     private fun updateProgressBar(status: ApiStatus) {
@@ -87,8 +93,8 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         if (p0?.id == R.id.convert_currency_btn) {
             viewModel.convertCurrency(
-                base = fromEditText.editText?.text.toString(),
-                target = toEditText.editText?.text.toString(),
+                base = fromEditText.editText?.text.toString().uppercase(),
+                target = toEditText.editText?.text.toString().uppercase(),
                 amount = amountEditText.editText?.text.toString().toInt()
             )
         }
