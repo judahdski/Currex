@@ -1,7 +1,6 @@
 package com.d3if0002.currex.ui.forex
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
-import com.d3if0002.currex.db.RateDB
+import com.d3if0002.currex.db.ExchangeDB
 import com.d3if0002.currex.model.ApiStatus
 import com.d3if0002.currex.repository.RepositoryDB
 
 class ForexFragment : Fragment() {
 
     private val viewModel: ForexViewModel by lazy {
-        val db = RateDB.getInstance(requireContext())
+        val db = ExchangeDB.getInstance(requireContext())
         val repo = RepositoryDB(db.dao)
         val factory = ForexViewModelFactory(repo)
         ViewModelProvider(this, factory)[ForexViewModel::class.java]

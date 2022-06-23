@@ -50,7 +50,7 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
                 symbol = symbol,
                 rate = rate,
             )
-            repoDB.insertRateForex(rateEntity)
+            repoDB.insertRateForexRepo(rateEntity)
         }
     }
 

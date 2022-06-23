@@ -6,10 +6,17 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface RateDAO {
+interface ExchangeDAO {
     @Insert
     fun insertRate(rate: RateEntity)
 
     @Query("SELECT * FROM RateData ORDER BY rate DESC LIMIT 15")
     fun getAllRates(): LiveData<List<RateEntity>>
+
+
+    @Insert
+    fun insertConversionCurrency(conversion: ConversionEntity)
+
+    @Query("SELECT * FROM Conversion ORDER BY id DESC")
+    fun getAllConversion(): LiveData<List<ConversionEntity>>
 }

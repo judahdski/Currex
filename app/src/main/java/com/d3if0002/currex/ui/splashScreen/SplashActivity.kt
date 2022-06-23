@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.d3if0002.currex.R
-import com.d3if0002.currex.db.RateDB
+import com.d3if0002.currex.db.ExchangeDB
 import com.d3if0002.currex.model.ApiStatus
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
@@ -15,7 +15,7 @@ import com.d3if0002.currex.ui.MainActivity
 class SplashActivity : AppCompatActivity() {
 
     private val viewModel: SplashViewModel by lazy {
-        val db = RateDB.getInstance(this)
+        val db = ExchangeDB.getInstance(this)
         val factory = SplashViewModelFactory(RepositoryAPI(), RepositoryDB(db.dao))
         ViewModelProvider(this, factory)[SplashViewModel::class.java]
     }
