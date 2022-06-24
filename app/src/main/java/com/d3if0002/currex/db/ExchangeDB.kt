@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase
         RateEntity::class,
         ConversionEntity::class
     ],
-    version = 2, exportSchema = false
+    version = 3, exportSchema = false
 )
 abstract class ExchangeDB : RoomDatabase() {
     abstract val dao: ExchangeDAO

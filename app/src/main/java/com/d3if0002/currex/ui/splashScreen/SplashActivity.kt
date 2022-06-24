@@ -20,22 +20,25 @@ class SplashActivity : AppCompatActivity() {
         ViewModelProvider(this, factory)[SplashViewModel::class.java]
     }
 
+    companion object {
+        const val BASE_CURRENCY = "USD"
+        const val BASE_COUNTRY = "usa"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         supportActionBar?.hide()
 
-        viewModel.getLatestRatesViewModel(this, "USD")
+        viewModel.getLatestRatesViewModel(BASE_CURRENCY)
 
         viewModel.status.observe(this) {
             updateProgress(it)
         }
 
-        viewModel.rates.observe(this) { rateList ->
-            rateList.forEach {
-                Log.d("DEBUGZZ", "${it.key}: $${it.value}")
-            }
+        viewModel.rates.observe(this) {
+            viewModel.insertData(it, BASE_CURRENCY, BASE_COUNTRY)
         }
     }
 
@@ -50,7 +53,6 @@ class SplashActivity : AppCompatActivity() {
                 progressStatus = true
             }
             ProgressIndicator.FAILED -> {
-                progressStatus = true
                 Log.d("DEBUGZZ", "Gagal")
             }
         }

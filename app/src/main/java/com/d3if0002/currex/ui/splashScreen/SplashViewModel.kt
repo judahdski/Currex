@@ -1,6 +1,5 @@
 package com.d3if0002.currex.ui.splashScreen
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +8,7 @@ import com.d3if0002.currex.db.RateEntity
 import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: RepositoryDB) :
@@ -16,7 +16,7 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
     private val _rates: MutableLiveData<Map<String, Double>> = MutableLiveData()
     private val _status: MutableLiveData<ProgressIndicator> = MutableLiveData()
 
-    fun getLatestRatesViewModel(ctx: Context, baseCurrency: String) {
+    fun getLatestRatesViewModel(baseCurrency: String) {
         viewModelScope.launch {
             _status.postValue(ProgressIndicator.LOADING)
 
@@ -42,15 +42,25 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
         }
     }
 
-    fun insertData(baseImg: String, targetImg: String, symbol: String, rate: String) {
-        viewModelScope.launch {
+    fun insertData(data: Map<String, Double>, baseCurrency: String, baseCountry: String) {
+        val listData: MutableList<RateEntity> = mutableListOf()
+
+        data.forEach {
             val rateEntity = RateEntity(
-                baseImg = baseImg,
-                targetImg = targetImg,
-                symbol = symbol,
-                rate = rate,
+                baseImg = "https://countryflagsapi.com/png/$baseCountry",
+                targetImg = "",
+                symbol = "$baseCurrency - ${it.key}",
+                rate = it.value,
             )
-            repoDB.insertRateForexRepo(rateEntity)
+            listData.add(rateEntity)
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repoDB.insertRateForexRepo(listData)
+            } catch (e: Exception) {
+                Log.d("DEBUGZZ", "$e")
+            }
         }
     }
 

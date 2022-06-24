@@ -1,6 +1,7 @@
 package com.d3if0002.currex.ui.forex
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,8 @@ class ForexFragment : Fragment() {
     private var _binding: FragmentForexBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var myAdapter: ForexAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,18 +38,20 @@ class ForexFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myAdapter = ForexAdapter()
         setAdapter()
+
         // TODO: check status datanya, klo true tampilin data dri db, klo false tampilin error text
-        viewModel.rates.observe(viewLifecycleOwner) {
-            val adapter = ForexAdapter()
-            adapter.updateAdapterUI(it)
+        viewModel.getRateList().observe(viewLifecycleOwner) {
+            Log.d("DEBUGZZ", it.toString())
+            myAdapter.updateRateList(it)
         }
     }
 
     private fun setAdapter() {
         val forexRv = binding.forexRv
 
-        forexRv.adapter = ForexAdapter()
+        forexRv.adapter = myAdapter
         forexRv.layoutManager = LinearLayoutManager(requireContext())
         forexRv.setHasFixedSize(true)
     }

@@ -6,8 +6,7 @@ import java.util.*
 
 @Entity(tableName = "Conversion")
 data class ConversionEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val baseCurr: String,
     val targetCurr: String,
     val amount: String,

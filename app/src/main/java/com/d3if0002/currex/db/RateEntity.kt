@@ -10,5 +10,5 @@ data class RateEntity(
     val baseImg: String,
     val targetImg: String,
     val symbol: String,
-    val rate: String
+    val rate: Double
 )

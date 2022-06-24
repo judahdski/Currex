@@ -30,7 +30,7 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
             with(binding) {
                 symbolForex.text = item.symbol
 
-                rateForex.text = item.rate
+                rateForex.text = item.rate.toString()
 
                 Glide.with(itemView)
                     .load(item.baseImg)
@@ -47,7 +47,7 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
         }
     }
 
-    fun updateAdapterUI(data: List<RateEntity>) {
+    fun updateRateList(data: List<RateEntity>) {
         rates.clear()
         rates.addAll(data)
         notifyDataSetChanged()

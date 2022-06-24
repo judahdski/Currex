@@ -5,7 +5,7 @@ import com.d3if0002.currex.db.ExchangeDAO
 import com.d3if0002.currex.db.RateEntity
 
 class RepositoryDB(private val db: ExchangeDAO) {
-    fun insertRateForexRepo(rate: RateEntity) {
+    fun insertRateForexRepo(rate: List<RateEntity>) {
         db.insertRate(rate)
     }
     fun getAllRateDataInfoRepo() = db.getAllRates()
