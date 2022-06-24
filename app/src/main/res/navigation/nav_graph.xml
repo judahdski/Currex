@@ -26,5 +26,14 @@
         android:id="@+id/convertCurrencyFragment"
         android:name="com.d3if0002.currex.ui.convertCurrency.ConvertCurrencyFragment"
         android:label="@string/konversi_mata_uang"
-        tools:layout="@layout/fragment_convert_currency" />
+        tools:layout="@layout/fragment_convert_currency" >
+        <action
+            android:id="@+id/navigate_to_history_conversion"
+            app:destination="@id/historyConversionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyConversionFragment"
+        android:name="com.d3if0002.currex.ui.historyConversion.HistoryConversionFragment"
+        android:label="Riwayat konversi"
+        tools:layout="@layout/fragment_history_conversion" />
 </navigation>

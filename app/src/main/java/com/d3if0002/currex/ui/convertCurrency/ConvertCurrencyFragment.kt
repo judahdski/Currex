@@ -1,23 +1,25 @@
 package com.d3if0002.currex.ui.convertCurrency
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentConvertCurrencyBinding
+import com.d3if0002.currex.db.ExchangeDB
 import com.d3if0002.currex.model.ApiStatus
 import com.d3if0002.currex.repository.RepositoryAPI
+import com.d3if0002.currex.repository.RepositoryDB
 import com.google.android.material.textfield.TextInputLayout
 
 class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
 
     private val viewModel: ConvertCurrencyViewModel by lazy {
-        val factory = ConvertCurrencyViewModelFactory(RepositoryAPI())
+        val db = ExchangeDB.getInstance(requireContext())
+        val factory = ConvertCurrencyViewModelFactory(RepositoryAPI(), RepositoryDB(db.dao))
         ViewModelProvider(requireActivity(), factory)[ConvertCurrencyViewModel::class.java]
     }
 
@@ -97,6 +99,21 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
                 target = toEditText.editText?.text.toString().uppercase(),
                 amount = amountEditText.editText?.text.toString().toInt()
             )
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.convert_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.history_menu_item -> {
+                Navigation.findNavController(view!!).navigate(R.id.navigate_to_history_conversion)
+                true
+            }
+            else -> super.onContextItemSelected(item)
         }
     }
 }

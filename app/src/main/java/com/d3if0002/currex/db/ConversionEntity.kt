@@ -10,6 +10,6 @@ data class ConversionEntity(
     val id: Long = 0L,
     val baseCurr: String,
     val targetCurr: String,
-    val result: String,
-    val timeStamp: Date
+    val amount: String,
+    val result: String
 )
