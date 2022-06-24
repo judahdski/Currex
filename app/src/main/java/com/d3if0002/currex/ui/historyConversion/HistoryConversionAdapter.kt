@@ -1,6 +1,5 @@
 package com.d3if0002.currex.ui.historyConversion
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +31,6 @@ class HistoryConversionAdapter
 
     override fun onBindViewHolder(holder: HistoryConversionViewHolder, position: Int) {
         val item = historyList[position]
-
-        Log.d("DEBUGZZ", "$item")
 
         with(holder) {
             with(binding) {

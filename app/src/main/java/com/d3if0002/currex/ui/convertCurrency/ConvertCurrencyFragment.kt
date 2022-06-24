@@ -119,7 +119,7 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.history_menu_item -> {
                 Navigation.findNavController(view!!).navigate(R.id.navigate_to_history_conversion)
                 true

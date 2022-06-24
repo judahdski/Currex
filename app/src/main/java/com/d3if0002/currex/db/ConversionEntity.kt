@@ -2,7 +2,6 @@ package com.d3if0002.currex.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "Conversion")
 data class ConversionEntity(

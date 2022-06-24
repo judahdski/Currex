@@ -4,12 +4,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.getSystemService
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.d3if0002.currex.R
@@ -35,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             channel.description = getString(R.string.channel_desc)
 
             val manager = getSystemService(Context.NOTIFICATION_SERVICE)
-                as NotificationManager
+                    as NotificationManager
             manager.createNotificationChannel(channel)
         }
     }

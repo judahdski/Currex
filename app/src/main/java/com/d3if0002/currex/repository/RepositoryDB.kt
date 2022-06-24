@@ -8,10 +8,12 @@ class RepositoryDB(private val db: ExchangeDAO) {
     fun insertRateForexRepo(rate: List<RateEntity>) {
         db.insertRate(rate)
     }
+
     fun getAllRateDataInfoRepo() = db.getAllRates()
 
     fun insertConversionRepo(conversion: ConversionEntity) {
         db.insertConversionCurrency(conversion)
     }
+
     fun getAllConversionRepo() = db.getAllConversion()
 }

@@ -1,7 +1,6 @@
 package com.d3if0002.currex.ui.forex
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
 import com.d3if0002.currex.db.ExchangeDB
-import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryDB
 import com.d3if0002.currex.repository.RepositoryDataStore
 
@@ -63,14 +61,6 @@ class ForexFragment : Fragment() {
         forexRv.adapter = myAdapter
         forexRv.layoutManager = LinearLayoutManager(requireContext())
         forexRv.setHasFixedSize(true)
-    }
-
-    fun updateProgress(status: ProgressIndicator) {
-        when (status) {
-            ProgressIndicator.LOADING -> {}
-            ProgressIndicator.SUCCESS -> {}
-            ProgressIndicator.FAILED -> {}
-        }
     }
 
     override fun onDestroy() {

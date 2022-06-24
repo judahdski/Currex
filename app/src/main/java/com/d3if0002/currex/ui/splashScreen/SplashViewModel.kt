@@ -1,6 +1,5 @@
 package com.d3if0002.currex.ui.splashScreen
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +8,7 @@ import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
 import com.d3if0002.currex.repository.RepositoryDataStore
+import com.d3if0002.currex.utils.Constant.Companion.FLAGS_BASE_URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -44,7 +44,7 @@ class SplashViewModel(private val repoDB: RepositoryDB, private val repoDS: Repo
 
         data.forEach {
             val rateEntity = RateEntity(
-                baseImg = "https://countryflagsapi.com/png/$baseCountry",
+                baseImg = "$FLAGS_BASE_URL$baseCountry",
                 targetImg = "",
                 symbol = "$baseCurrency - ${it.key}",
                 rate = it.value,
@@ -53,11 +53,7 @@ class SplashViewModel(private val repoDB: RepositoryDB, private val repoDS: Repo
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                repoDB.insertRateForexRepo(listData)
-            } catch (e: Exception) {
-                Log.d("DEBUGZZ", "$e")
-            }
+            repoDB.insertRateForexRepo(listData)
         }
     }
 

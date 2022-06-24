@@ -2,17 +2,18 @@ package com.d3if0002.currex.ui
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.ActivityAboutBinding
+import com.d3if0002.currex.utils.Constant.Companion.DONATE_URL
+import com.d3if0002.currex.utils.Constant.Companion.MAIN_URL
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     private var _binding: ActivityAboutBinding? = null
-    private val binding get() =  _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +39,12 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         var url = ""
 
-        when(p0?.id) {
+        when (p0?.id) {
             R.id.view_button -> {
-                url = "https://exchangerate.host/#/"
+                url = MAIN_URL
             }
             R.id.support_button -> {
-                url = "https://exchangerate.host/#/donate"
+                url = DONATE_URL
             }
         }
 

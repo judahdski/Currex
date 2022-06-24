@@ -1,18 +1,14 @@
 package com.d3if0002.currex.ui.historyConversion
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentHistoryConversionBinding
 import com.d3if0002.currex.db.ExchangeDB
-import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryDB
 
 class HistoryConversionFragment : Fragment() {
