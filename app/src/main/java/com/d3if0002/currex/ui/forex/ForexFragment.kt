@@ -12,13 +12,15 @@ import com.d3if0002.currex.databinding.FragmentForexBinding
 import com.d3if0002.currex.db.ExchangeDB
 import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryDB
+import com.d3if0002.currex.repository.RepositoryDataStore
 
 class ForexFragment : Fragment() {
 
     private val viewModel: ForexViewModel by lazy {
         val db = ExchangeDB.getInstance(requireContext())
-        val repo = RepositoryDB(db.dao)
-        val factory = ForexViewModelFactory(repo)
+        val repoDB = RepositoryDB(db.dao)
+        val repoDS = RepositoryDataStore(requireContext())
+        val factory = ForexViewModelFactory(repoDB, repoDS)
         ViewModelProvider(this, factory)[ForexViewModel::class.java]
     }
 
@@ -41,10 +43,17 @@ class ForexFragment : Fragment() {
         myAdapter = ForexAdapter()
         setAdapter()
 
-        // TODO: check status datanya, klo true tampilin data dri db, klo false tampilin error text
+        var isEmptyData = false
+        viewModel.apiDataStatus.observe(requireActivity()) {
+            isEmptyData = it
+        }
+
         viewModel.getRateList().observe(viewLifecycleOwner) {
-            Log.d("DEBUGZZ", it.toString())
-            myAdapter.updateRateList(it)
+            if (isEmptyData) {
+                myAdapter.updateRateList(it)
+            } else {
+                binding.errorText.visibility = View.VISIBLE
+            }
         }
     }
 

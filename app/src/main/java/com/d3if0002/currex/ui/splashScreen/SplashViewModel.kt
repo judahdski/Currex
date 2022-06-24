@@ -8,11 +8,15 @@ import com.d3if0002.currex.db.RateEntity
 import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
+import com.d3if0002.currex.repository.RepositoryDataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: RepositoryDB) :
+class SplashViewModel(private val repoDB: RepositoryDB, private val repoDS: RepositoryDataStore) :
     ViewModel() {
+
+    private val repoAPI: RepositoryAPI = RepositoryAPI()
+
     private val _rates: MutableLiveData<Map<String, Double>> = MutableLiveData()
     private val _status: MutableLiveData<ProgressIndicator> = MutableLiveData()
 
@@ -28,16 +32,9 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
                     _rates.postValue(response.body()?.rates)
                 } else {
                     _status.postValue(ProgressIndicator.FAILED)
-                    Log.d("DEBUGZZ", "error response msg: ${response.errorBody().toString()}")
-                    /*
-                        TODO: save ke datastore klo statusnya failed, biar nanti di forex fragment
-                        tinggal ambil statenya trus ubah viewnya
-                     */
                 }
             } catch (e: Exception) {
                 _status.postValue(ProgressIndicator.FAILED)
-                Log.d("DEBUGZZ", "exception: ${e.message.toString()}")
-                // TODO: sama kek yg di atas
             }
         }
     }
@@ -61,6 +58,12 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
             } catch (e: Exception) {
                 Log.d("DEBUGZZ", "$e")
             }
+        }
+    }
+
+    fun setApiDataStatus(status: ProgressIndicator) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repoDS.setApiDataStatus(status)
         }
     }
 
