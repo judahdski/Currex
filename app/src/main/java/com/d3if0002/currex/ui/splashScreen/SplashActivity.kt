@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.d3if0002.currex.R
 import com.d3if0002.currex.db.ExchangeDB
-import com.d3if0002.currex.model.ApiStatus
+import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
 import com.d3if0002.currex.ui.MainActivity
@@ -39,17 +39,17 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateProgress(status: ApiStatus) {
+    private fun updateProgress(status: ProgressIndicator) {
         var progressStatus = false
 
         when (status) {
-            ApiStatus.LOADING -> {
+            ProgressIndicator.LOADING -> {
                 Log.d("DEBUGZZ", "Lagi loading")
             }
-            ApiStatus.SUCCESS -> {
+            ProgressIndicator.SUCCESS -> {
                 progressStatus = true
             }
-            ApiStatus.FAILED -> {
+            ProgressIndicator.FAILED -> {
                 progressStatus = true
                 Log.d("DEBUGZZ", "Gagal")
             }

@@ -1,7 +1,6 @@
 package com.d3if0002.currex.ui.convertCurrency
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -11,7 +10,7 @@ import androidx.navigation.Navigation
 import com.d3if0002.currex.R
 import com.d3if0002.currex.databinding.FragmentConvertCurrencyBinding
 import com.d3if0002.currex.db.ExchangeDB
-import com.d3if0002.currex.model.ApiStatus
+import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
 import com.google.android.material.textfield.TextInputLayout
@@ -34,6 +33,8 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
     private lateinit var resultText: TextView
     private lateinit var progressBar: ProgressBar
 
+    private var convertedResult: Double = 0.0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,25 +55,26 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setResultText(text: Any) {
-        if (text is Double) {
+    private fun setResultText(convertedResult: Any) {
+        if (convertedResult is Double) {
             val target = toEditText.editText?.text.toString().uppercase()
 
-            resultText.text = getString(R.string.result_convert, target, text)
+            resultText.text = getString(R.string.result_convert, target, convertedResult)
+            this.convertedResult = convertedResult
         } else {
-            resultText.text = text.toString()
+            resultText.text = convertedResult.toString()
         }
     }
 
-    private fun updateProgressBar(status: ApiStatus) {
+    private fun updateProgressBar(status: ProgressIndicator) {
         when (status) {
-            ApiStatus.LOADING -> {
+            ProgressIndicator.LOADING -> {
                 progressBar.visibility = View.VISIBLE
             }
-            ApiStatus.SUCCESS -> {
+            ProgressIndicator.SUCCESS -> {
                 progressBar.visibility = View.GONE
             }
-            ApiStatus.FAILED -> {
+            ProgressIndicator.FAILED -> {
                 progressBar.visibility = View.GONE
             }
         }
@@ -100,6 +102,13 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
                 base = fromEditText.editText?.text.toString().uppercase(),
                 target = toEditText.editText?.text.toString().uppercase(),
                 amount = amountEditText.editText?.text.toString().toInt()
+            )
+
+            viewModel.insertConversionViewModel(
+                base = fromEditText.editText?.text.toString().uppercase(),
+                target = toEditText.editText?.text.toString().uppercase(),
+                amount = amountEditText.editText?.text.toString().toInt(),
+                result = convertedResult
             )
         }
     }

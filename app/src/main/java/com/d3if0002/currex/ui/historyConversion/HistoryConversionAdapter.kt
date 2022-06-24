@@ -1,5 +1,6 @@
 package com.d3if0002.currex.ui.historyConversion
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,11 +9,12 @@ import com.d3if0002.currex.db.ConversionEntity
 
 class HistoryConversionAdapter
     : RecyclerView.Adapter<HistoryConversionAdapter.HistoryConversionViewHolder>() {
+
     private val historyList = mutableListOf<ConversionEntity>()
 
-    fun updateHistoryList(newList: List<ConversionEntity>) {
+    fun updateHistoryList(newData: List<ConversionEntity>) {
         historyList.clear()
-        historyList.addAll(newList)
+        historyList.addAll(newData)
         notifyDataSetChanged()
     }
 
@@ -31,16 +33,17 @@ class HistoryConversionAdapter
     override fun onBindViewHolder(holder: HistoryConversionViewHolder, position: Int) {
         val item = historyList[position]
 
+        Log.d("DEBUGZZ", "$item")
+
         with(holder) {
             with(binding) {
-                baseValue.text = item.toString()
-                toValue.text = item.toString()
-                amountValue.text = item.toString()
-                convertedValue.text = item.toString()
+                baseValue.text = item.baseCurr
+                toValue.text = item.targetCurr
+                amountValue.text = item.amount
+                convertedValue.text = item.result
             }
         }
     }
 
     override fun getItemCount() = historyList.size
-
 }

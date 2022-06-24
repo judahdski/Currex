@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.d3if0002.currex.db.RateEntity
-import com.d3if0002.currex.model.ApiStatus
+import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryAPI
 import com.d3if0002.currex.repository.RepositoryDB
 import kotlinx.coroutines.launch
@@ -14,20 +14,20 @@ import kotlinx.coroutines.launch
 class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: RepositoryDB) :
     ViewModel() {
     private val _rates: MutableLiveData<Map<String, Double>> = MutableLiveData()
-    private val _status: MutableLiveData<ApiStatus> = MutableLiveData()
+    private val _status: MutableLiveData<ProgressIndicator> = MutableLiveData()
 
     fun getLatestRatesViewModel(ctx: Context, baseCurrency: String) {
         viewModelScope.launch {
-            _status.postValue(ApiStatus.LOADING)
+            _status.postValue(ProgressIndicator.LOADING)
 
             try {
                 val response = repoAPI.getLatestRatesRepo(baseCurrency)
 
                 if (response.isSuccessful) {
-                    _status.postValue(ApiStatus.SUCCESS)
+                    _status.postValue(ProgressIndicator.SUCCESS)
                     _rates.postValue(response.body()?.rates)
                 } else {
-                    _status.postValue(ApiStatus.FAILED)
+                    _status.postValue(ProgressIndicator.FAILED)
                     Log.d("DEBUGZZ", "error response msg: ${response.errorBody().toString()}")
                     /*
                         TODO: save ke datastore klo statusnya failed, biar nanti di forex fragment
@@ -35,7 +35,7 @@ class SplashViewModel(private val repoAPI: RepositoryAPI, private val repoDB: Re
                      */
                 }
             } catch (e: Exception) {
-                _status.postValue(ApiStatus.FAILED)
+                _status.postValue(ProgressIndicator.FAILED)
                 Log.d("DEBUGZZ", "exception: ${e.message.toString()}")
                 // TODO: sama kek yg di atas
             }

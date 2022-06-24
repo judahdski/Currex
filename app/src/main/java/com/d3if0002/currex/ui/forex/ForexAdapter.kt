@@ -1,5 +1,6 @@
 package com.d3if0002.currex.ui.forex
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +23,14 @@ class ForexAdapter : RecyclerView.Adapter<ForexAdapter.ForexViewHolder>() {
 
     override fun onBindViewHolder(holder: ForexViewHolder, position: Int) {
         val item = rates[position]
+
+        Log.d("DEBUGZZ", "$item")
+
         with(holder) {
             with(binding) {
                 symbolForex.text = item.symbol
 
                 rateForex.text = item.rate
-//                rateForex.text = "$${(dataTemp[position] * ((1..10).random()) * 64)}"
 
                 Glide.with(itemView)
                     .load(item.baseImg)

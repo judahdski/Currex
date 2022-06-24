@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d3if0002.currex.databinding.FragmentForexBinding
 import com.d3if0002.currex.db.ExchangeDB
-import com.d3if0002.currex.model.ApiStatus
+import com.d3if0002.currex.model.ProgressIndicator
 import com.d3if0002.currex.repository.RepositoryDB
 
 class ForexFragment : Fragment() {
@@ -51,11 +51,11 @@ class ForexFragment : Fragment() {
         forexRv.setHasFixedSize(true)
     }
 
-    fun updateProgress(status: ApiStatus) {
+    fun updateProgress(status: ProgressIndicator) {
         when (status) {
-            ApiStatus.LOADING -> {}
-            ApiStatus.SUCCESS -> {}
-            ApiStatus.FAILED -> {}
+            ProgressIndicator.LOADING -> {}
+            ProgressIndicator.SUCCESS -> {}
+            ProgressIndicator.FAILED -> {}
         }
     }
 
