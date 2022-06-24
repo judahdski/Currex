@@ -1,6 +1,7 @@
 package com.d3if0002.currex.ui.convertCurrency
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -43,6 +44,7 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         setUI()
         viewModel.result.observe(viewLifecycleOwner) {
             setResultText(it)
@@ -107,7 +109,7 @@ class ConvertCurrencyFragment : Fragment(), View.OnClickListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.history_menu_item -> {
                 Navigation.findNavController(view!!).navigate(R.id.navigate_to_history_conversion)

@@ -19,14 +19,13 @@ class HistoryConversionFragment : Fragment() {
         ViewModelProvider(requireActivity(), factory).get(HistoryConversionViewModel::class.java)
     }
 
-    private var _binding: FragmentHistoryConversionBinding? = null
-    private val binding = _binding!!
+    private lateinit var binding: FragmentHistoryConversionBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHistoryConversionBinding.inflate(inflater)
+        binding = FragmentHistoryConversionBinding.inflate(inflater)
         return binding.root
     }
 
@@ -43,10 +42,5 @@ class HistoryConversionFragment : Fragment() {
         val rv = binding.historyConvertRv
         rv.adapter = HistoryConversionAdapter()
         rv.setHasFixedSize(true)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
